@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 package farm;
+=======
+>>>>>>> 2284747 (added ArrayList)
 
 public class Animal {
   private String name;

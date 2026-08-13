@@ -1,24 +1,31 @@
-package farm;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Main {
   static Scanner scan = new Scanner(System.in);
 
   public static void main(String[] args) {
 
-    // boolean game = true;
-    Animal cow = new Animal("Cow", 100);
-    Animal chicken = new Animal("Chicken", 80);
-    Animal sheep = new Animal("Sheep", 100);
+    List<Animal> animals = new ArrayList<>();
+    animals.add(new Animal("Cow", 100));
+    animals.add(new Animal("Chicken", 80));
+    animals.add(new Animal("Sheep", 100));
 
-    cow.increaseHunger();
-    chicken.increaseHunger();
-    sheep.increaseHunger();
+    for (Animal animal : animals) {
+      animal.increaseHunger();
+      System.out.println(animal.getName() + ": " + animal.getHunger());
+    }
 
-    System.out.println(cow.getName() + ": " + cow.getHunger());
-    System.out.println(chicken.getName() + ": " + chicken.getHunger());
-    System.out.println(sheep.getName() + ": " + sheep.getHunger());
+    // cow.increaseHunger();
+    // chicken.increaseHunger();
+    // sheep.increaseHunger();
+
+    // System.out.println(cow.getName() + ": " + cow.getHunger());
+    // System.out.println(chicken.getName() + ": " + chicken.getHunger());
+    // System.out.println(sheep.getName() + ": " + sheep.getHunger());
   }
 
   // while (game) {
