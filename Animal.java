@@ -1,11 +1,13 @@
-<<<<<<< HEAD
-package farm;
-=======
->>>>>>> 2284747 (added ArrayList)
-
 public class Animal {
   private String name;
   private int hunger;
+  private boolean isHungry;
+
+  // public Animal(Sring name, int hunger, boolean isHungry) {
+  // this.name = name;
+  // this.hunger = hunger;
+  // this.isHungry = isHungry;
+  // }
 
   public Animal(String name, int hunger) {
     this.name = name;
@@ -14,6 +16,15 @@ public class Animal {
 
   public void increaseHunger() {
     this.hunger = Math.max(0, this.hunger - 20);
+
+    if (this.hunger <= 30)
+      this.isHungry = true;
+    else
+      this.isHungry = false;
+  }
+
+  public boolean isHungry() {
+    return isHungry;
   }
 
   public void feed() {
