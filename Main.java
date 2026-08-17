@@ -8,7 +8,6 @@ public class Main {
   public static void main(String[] args) {
 
     List<Animal> animals = new ArrayList<>();
-
     animals.add(new Animal("Cow", 100));
     animals.add(new Animal("Chicken", 80));
     animals.add(new Animal("Sheep", 100));
