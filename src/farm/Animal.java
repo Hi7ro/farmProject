@@ -1,18 +1,15 @@
-public class Animal {
+package src.farm;
+public abstract class Animal {
   private String name;
   private int hunger;
   private boolean isHungry;
-
-  // public Animal(Sring name, int hunger, boolean isHungry) {
-  // this.name = name;
-  // this.hunger = hunger;
-  // this.isHungry = isHungry;
-  // }
 
   public Animal(String name, int hunger) {
     this.name = name;
     this.hunger = hunger;
   }
+
+  public abstract String produce();
 
   public void increaseHunger() {
     this.hunger = Math.max(0, this.hunger - 20);
