@@ -1,5 +1,6 @@
 package src.farm;
-public class Sheep extends Animal {
+
+public class Sheep extends Animal implements ProductProducer {
 
   public Sheep(String name, int hunger) {
     super(name, hunger);

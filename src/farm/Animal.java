@@ -1,15 +1,18 @@
 package src.farm;
+
 public abstract class Animal {
   private String name;
   private int hunger;
   private boolean isHungry;
 
   public Animal(String name, int hunger) {
+    if (hunger < 0 || hunger > 100) {
+      throw new InvalidHungerException("Hunger must be between 0 and 100, was: " + hunger + ".\n");
+    }
+
     this.name = name;
     this.hunger = hunger;
   }
-
-  public abstract String produce();
 
   public void increaseHunger() {
     this.hunger = Math.max(0, this.hunger - 20);
@@ -33,6 +36,9 @@ public abstract class Animal {
   }
 
   public void setHunger(int hunger) {
+    if (hunger < 0 || hunger > 100) {
+      throw new InvalidHungerException("Hunger must be setted between 0 and 100, was: " + hunger + ".\n");
+    }
     this.hunger = hunger;
   }
 
