@@ -3,6 +3,7 @@ package src.farm;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 public class Main {
   static Scanner scan = new Scanner(System.in);
@@ -41,6 +42,13 @@ public class Main {
       System.out.println("___________________________\n");
       printAllAnimals(getHungryAnimals(animals));
     }
+
+    ProductProducer customProduct = () -> "Manure";
+    System.out.println("Testing: " + customProduct.produce());
+
+    Predicate<Animal> isHungryPredicate = animal -> animal.isHungry();
+    System.out.println(isHungryPredicate.test(animals.getFirst()));
+
   }
 
   public static void printAllAnimals(List<Animal> animals) {
