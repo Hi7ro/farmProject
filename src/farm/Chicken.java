@@ -1,4 +1,4 @@
-package src.farm;
+package farm;
 
 public class Chicken extends Animal implements ProductProducer {
 
@@ -7,7 +7,8 @@ public class Chicken extends Animal implements ProductProducer {
   }
 
   @Override
-  public String produce() {
-    return "Eggs";
+  public int produce() {
+    return (int) (Math.random() * 5);
   }
+
 }

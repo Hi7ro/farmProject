@@ -1,5 +1,5 @@
-package src.farm;
+package farm;
 
 public interface ProductProducer {
-  String produce();
+  int produce();
 }

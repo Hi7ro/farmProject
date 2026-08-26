@@ -1,4 +1,4 @@
-package src.farm;
+package farm;
 
 public class Sheep extends Animal implements ProductProducer {
 
@@ -7,7 +7,8 @@ public class Sheep extends Animal implements ProductProducer {
   }
 
   @Override
-  public String produce() {
-    return "Wool";
+  public int produce() {
+    return (int) (Math.random() * 20);
   }
+
 }
