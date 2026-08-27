@@ -13,14 +13,15 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         List<Animal> animals = new ArrayList<>();
+        List<Animal> deadAnimals = filterAnimals(animals);
+
         animals.add(new Cow("Cow", 100));
         animals.add(new Chicken("Chicken", 80));
-        animals.add(new Sheep("Sheep", 60));
+        animals.add(new Sheep("Sheep", 100));
 
         while (repeat) {
-
-            animalsGetHungry(animals);
             checkAnimals(animals);
+            animalsGetHungry(animals);
             printGame(animals);
 
         }
@@ -35,14 +36,14 @@ public class App {
 
     public static void printGame(List<Animal> animals) {
         for (Animal animal : animals) {
+            System.out.println(
+                    "Möchtest du: "
+                            + animal.getName()
+                            + " füttern? Hunger: " + animal.getHunger() + ", alle oder keines?: "
+                            + "/ alle / j / n");
             if (animal.isHungry()) {
-                System.out.println(
-                        "Möchtest du: "
-                                + animal.getName()
-                                + " füttern? Hunger: " + animal.getHunger() + ", alle oder keines?: "
-                                + animal.getName() + "/ alle " + "/ n");
                 String answer = scan.nextLine();
-                if (answer.equals(animal.getName())) {
+                if (answer.equals("j")) {
                     animal.feedAnimal();
                     System.out.println(animal.getName() + " wurde gefüttert!\n");
                 } else if (answer.equals("alle")) {
@@ -67,11 +68,9 @@ public class App {
     }
 
     public static void checkAnimals(List<Animal> animals) {
-        for (Animal animal : animals) {
-            if (animal.getHunger() <= 0) {
-                repeat = false;
-                System.out.println("1 or more animals is starving!!!!");
-            }
+        if (animals.isEmpty()) {
+            System.out.println("All animals are dead, GAME OVER!!!");
+            repeat = false;
         }
     }
 
@@ -88,15 +87,10 @@ public class App {
         System.out.println("_________________\n");
     }
 
-    // public static List<Animal> filterAnimals(List<Animal> animals,
-    // Predicate<Animal> condition) {
-    // List<Animal> result = new ArrayList<>();
-    // for (Animal animal : animals) {
-    // if (condition.test(animal)) {
-    // result.add(animal);
-    // }
-    // }
-    // return result;
-    // }
+    public static List<Animal> filterAnimals(List<Animal> animals) {
+        return animals.stream()
+                .filter(a -> a.getHunger() <= 0)
+                .toList();
+    }
 
 }
