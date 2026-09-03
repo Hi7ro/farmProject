@@ -11,37 +11,31 @@ public class App {
     static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception {
-
         List<Animal> animals = new ArrayList<>();
-        List<Animal> deadAnimals = filterAnimals(animals);
 
         animals.add(new Cow("Cow", 100));
         animals.add(new Chicken("Chicken", 80));
         animals.add(new Sheep("Sheep", 100));
+        List<Animal> deadAnimals = filterAnimals(animals);
 
         while (repeat) {
             checkAnimals(animals);
             animalsGetHungry(animals);
+            deadAnimals.addAll(filterAnimals(animals));
             printGame(animals);
-
         }
+
         scan.close();
-    }
-
-    public static void printAllAnimalStatus(List<Animal> animals) {
-        for (Animal animal : animals) {
-            System.out.println(animal.getName() + ": " + animal.getHunger());
-        }
     }
 
     public static void printGame(List<Animal> animals) {
         for (Animal animal : animals) {
-            System.out.println(
-                    "Möchtest du: "
-                            + animal.getName()
-                            + " füttern? Hunger: " + animal.getHunger() + ", alle oder keines?: "
-                            + "/ alle / j / n");
             if (animal.isHungry()) {
+                System.out.println(
+                        "Möchtest du: "
+                                + animal.getName()
+                                + " füttern? Hunger: " + animal.getHunger() + ", alle oder keines?: "
+                                + "/ alle / j / n");
                 String answer = scan.nextLine();
                 if (answer.equals("j")) {
                     animal.feedAnimal();
@@ -58,7 +52,6 @@ public class App {
             }
         }
         printProducedProducts(animals);
-
     }
 
     public static void animalsGetHungry(List<Animal> animals) {
@@ -82,15 +75,18 @@ public class App {
             System.out.println(animal.getName()
                     + " hunger: "
                     + animal.getHunger()
-                    + " prodouced: " + animal.getProduct());
+                    + " produced: " + animal.getProduct());
         }
         System.out.println("_________________\n");
     }
 
     public static List<Animal> filterAnimals(List<Animal> animals) {
-        return animals.stream()
+        List<Animal> dead = animals.stream()
                 .filter(a -> a.getHunger() <= 0)
                 .toList();
+
+        animals.removeIf(a -> a.getHunger() <= 0);
+        return dead;
     }
 
 }
