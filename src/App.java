@@ -16,7 +16,7 @@ public class App {
         animals.add(new Cow("Cow", 100));
         animals.add(new Chicken("Chicken", 80));
         animals.add(new Sheep("Sheep", 100));
-        List<Animal> deadAnimals = filterAnimals(animals);
+        List<Animal> deadAnimals = new ArrayList<>();
 
         while (repeat) {
             checkAnimals(animals);
@@ -41,9 +41,7 @@ public class App {
                     animal.feedAnimal();
                     System.out.println(animal.getName() + " wurde gefüttert!\n");
                 } else if (answer.equals("alle")) {
-                    animals.forEach(ani -> {
-                        ani.feedAnimal();
-                    });
+                    animals.forEach(Animal::feedAnimal);
                     System.out.println("Alle wurden gefüttert!\n");
                 } else if (answer.equals("n")) {
                     System.out.println("Keine Tiere wurden gefüttert!\n");
